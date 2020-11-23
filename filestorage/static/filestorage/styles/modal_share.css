@@ -1,0 +1,111 @@
+
+/*	Share menu modal	*/
+
+.shareModal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	align-items: center;
+}
+
+/* Modal Content */
+
+#shareModal-container {
+	position: relative;
+	border-radius: 5px;
+	background-color: #fefefe;
+	margin: auto;
+	padding: 10px;
+	border: 1px solid #888;
+	width: 30%;
+	height: 25%;
+}
+
+#shareModal-input {
+     margin: 100px, 0;
+     
+}
+
+#shareModal-form {
+
+}
+
+/* The Close Button */
+
+.shareModal-button-box {
+
+    
+}
+
+#shareModal-select {
+	font-size: 20px;
+}
+
+#shareModal-cancel, #shareModal-accept {
+	position: absolute;
+	bottom: 0;
+	display: inline-block; 
+	font-size: 20px;
+	padding: 30px 50px;
+}
+
+#shareModal-accept {
+	left: 0;
+}
+
+#shareModal-cancel{
+	right: 0;
+}
+
+#shareModal-content {
+	margin: auto;
+	padding: 0;
+	overflow: auto;
+    height: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+	
+}
+
+#shareModal-cancel:hover,
+#shareModal-cancel:focus,
+#shareModal-accept:hover,
+#shareModal-accept:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+
+}
+
+.share-select {
+    max-width: 300px;
+    min-width: 150px;
+}
+
+
+@media only screen and (max-width: 640px) {
+
+	#shareModal-container {
+		width: 100%;
+		height: 80%;
+		padding: 10px 0;
+	}
+
+	.shareModal-header {
+		padding: 10px 10px;
+	}
+		
+	#shareModal-content {
+		height: 70%;
+	}
+
+}
+

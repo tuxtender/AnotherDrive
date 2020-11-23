@@ -1,0 +1,249 @@
+/*	Modal box	*/
+
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: none;  /* Enable scroll if needed */
+	background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+	justify-content: center;
+	align-items: center;
+	
+}
+
+/* Modal Content (image) */
+
+.modal-content {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: black;
+	height: 40vw;	/*	Keep aspect ratio	*/
+	max-width: 80vw;
+	border-radius: 5px;
+}
+
+#modal_image {
+	object-fit: scale-down;
+	width: calc(100% - 200px);	/*Responding on the comment panel width*/
+	height: 100%;
+	
+}
+
+/* Comments	*/
+
+#meta_window {
+	display: block;
+	width: 200px;
+	height: 100%;
+	background-color: white;
+	border-radius: 0 5px 5px 0;
+	
+}
+
+.modal_menu {
+	display: none;
+	position: absolute;
+	top: 15px;
+	right: 35px;
+	color: #f1f1f1;
+	font-size: 40px;
+	font-weight: bold;
+	transition: 0.3s;
+}
+
+#commentForm textarea{
+	resize: none;
+	margin: 5px;
+
+}
+
+#commentForm input{
+	border-radius: 2px;
+	background-color: pink;
+	color: white;
+	text-shadow: none;
+	box-shadow: none;
+	margin: 0 0 5px 0;
+	border-style: none;
+}
+
+.comment_area {
+	height: calc(100% - 100px);
+	padding: 0 5px;
+	overflow: auto; /* Add vertical scrollbar */
+}
+
+.comment_compose_area {
+	position: absolute;
+	bottom: 0;
+	text-align: center;
+	padding: 5px 0;
+	height: 85px;
+		
+}
+
+/* The Close & the Download Buttons */
+
+#modal-close, #download_modal {
+	position: absolute;
+	top: 15px;
+	right: 35px;
+	color: #f1f1f1;
+	font-size: 40px;
+	font-weight: bold;
+	transition: 0.3s;
+	z-index: 1;
+}
+
+#download_modal {
+	right: 90px;
+}
+
+#modal-close:hover,
+#modal-close:focus,
+#download_modal:hover,
+#download_modal:focus {
+	color: #bbb;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+
+/*	Add Animation	*/
+
+.modal-content {  
+	animation-name: zoom;
+	animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+	from {transform: scale(0.1)} 
+	to {transform: scale(1)}
+}
+
+/*	Glow effect a Modal's download button	*/
+
+.glow {
+  color: #fff;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+}
+
+/* Next & previous buttons */
+
+#modal-prev,
+#modal-next {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	padding: 16px;
+	margin-top: -50px;
+	color: white;
+	font-weight: bold;
+	font-size: 20px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
+	-webkit-user-select: none;
+	border-radius: 3px 0 0 3px;
+	color: rgba(255, 255, 255, 0.3);
+}
+
+#modal-next {
+	right: 200px;
+}
+
+#modal-prev {
+	left: 0; /*	Remain width of comment	*/
+}
+
+#modal-prev:hover,
+#modal-next:hover {
+	background-color: rgba(0, 0, 0, 0.8);
+	color: rgba(255, 255, 255, 1);
+}
+
+.modal_comment_author {
+	display: block;
+	color: #1d2129;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 1.38;
+	word-wrap: break-word;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+.modal_comment_date {
+	display: block;
+	color: #616770;
+	font-weight: normal;
+	font-size: 10px;
+	direction: ltr;
+	line-height: 1.34;
+}
+
+.modal_comment_text {
+	display: block;
+	color: #1c1e21;
+	line-height: 16px;
+	white-space: normal;
+	word-break: break-word;
+	font-size: 13px;
+}
+
+@media only screen and (max-width: 500px) {
+
+	#meta_window {
+		display: none;
+	}
+		
+	#modal_image {
+		width: 100%;
+	}
+	
+	.modal-content {
+		height: 100%;
+		max-width: 100%;
+	}
+	
+	.modal {
+		background-color: rgba(0,0,0,1); 
+	}
+			
+	#modal-prev,
+	#modal-next {
+		color: rgba(255,255,255,0);
+		top: 20%;
+	}
+	
+	#modal-prev {
+		padding: 80% 20% 80% 0;
+	}
+	
+	#modal-next {
+		padding: 80% 0 80% 20%;
+		right: 0;
+	}
+		
+	#modal-prev:hover,
+	#modal-next:hover {
+		background-color: rgba(0, 0, 0, 0);
+	}
+	
+}
+

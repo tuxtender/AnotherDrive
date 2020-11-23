@@ -1,0 +1,182 @@
+{% extends "base_generic.html" %}
+
+{% load static %}
+
+    {% block title %}<title>{{ misc.owner }}</title>{% endblock %}
+
+	{% block css %}
+		
+		<link rel="stylesheet" href="{% static 'filestorage/styles/modal_move.css' %}">
+		<link rel="stylesheet" href="{% static 'filestorage/styles/modal_new_folder.css' %}">
+		<link rel="stylesheet" href="{% static 'filestorage/styles/modal_share.css' %}">
+
+
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="{% static 'filestorage/styles/style.css' %}">
+		<link rel="stylesheet" href="{% static 'filestorage/styles/modal_viewer.css' %}">
+		<link rel="stylesheet" href="{% static 'filestorage/styles/menu.css' %}">
+	{% endblock %}
+
+  
+    {% block menu %}
+
+
+		<ul id="menu">
+
+			<li id="back"  class="menu menu1 menu2"><div ><img src="{% static 'filestorage/images/abort.svg' %}" alt="back" height="15" width="15"></div></li>
+			<li id="more" class="menu menu0"><div ><img src="{% static 'filestorage/images/menu.svg' %}" alt="menu" height="15" width="15"></div></li>
+			<li id="download" class="menu menu2"><div ><img src="{% static 'filestorage/images/download.svg' %}" alt="download" height="15" width="15"></div></li>
+
+		{% if user.is_authenticated %}	
+			<li id="add" class="menu menu0"><div ><img src="{% static 'filestorage/images/plus.svg' %}" alt="add" height="15" width="15"></div></li>
+			<li id="upload"  class="menu menu1"><div ><img src="{% static 'filestorage/images/upload.svg' %}" alt="upload" height="15" width="15"></div></li>
+			<li id="new-directory"  class="menu menu1"><div ><img src="{% static 'filestorage/images/add_folder.svg' %}" alt="add_folder" height="15" width="15"></div></li>
+			<li id="delete"  class="menu menu2"><div ><img src="{% static 'filestorage/images/remove.svg' %}" alt="delete" height="15" width="15"></div></li>
+			<li id="move" class="menu menu2" ><div><img src="{% static 'filestorage/images/move.svg' %}" alt="move_to" height="15" width="15"></div></li>
+			<li id="share"  class="menu menu2"><div  ><img src="{% static 'filestorage/images/share.svg' %}" alt="share" height="15" width="15"></div></li>
+		{% endif %}
+			
+			
+			<li id="nav_bar" >
+				{% for item in path %} 
+					<a class="navbar_dir" folder-id="{{item.id}}" href= "{% url 'folder-view' item.id %}">
+						{% if not item.name %} 
+							{{item.owner.username}}
+						{% else %}
+							{{item.name}}
+						{% endif %}
+							<span>&#47;</span>
+					</a>
+				{% endfor %}
+			
+			</li> 
+					
+		</ul>    
+    
+    
+    {% endblock %}
+    
+
+	{% block content %}
+		
+		<div id="gallery"></div>  
+				
+
+		<div id="modal-view" class="modal" >
+			<a id="download_modal" download>
+				<span class="material-icons glow">file_download</span>
+			</a>
+			<span id="modal-close">&times;</span>
+			<div class="modal-content">
+				<img id="modal_image">
+				
+				<div id="meta_window" >
+					<div id="file_info"></div>
+					<div id="comments" class="comment_area"></div>
+					<div class="comment_compose_area">
+						<form id='commentForm' action="" name="cForm" method="">
+							{% csrf_token %}
+							<textarea id="" form='commentForm' class="text" name="comment"></textarea>
+							<input type="submit" value="Comment" class="">
+						</form>
+					</div>
+				</div>
+				<div class='modal_menu'> menu </div>
+				<a id="modal-prev" >&#10094;</a>
+				<a id="modal-next" >&#10095;</a>
+			</div>
+		</div>
+		
+	{% if user.is_authenticated %}	
+		<!-- The Modal create new directory -->
+		<div id="newDirModal" class="dirModal">
+			<!-- Modal content -->
+			<div class="newDirModal-content">
+				<dir class="newDirModal-header">New folder</dir> 
+				<form class="newDirForm" name="newDirForm" method="POST" action="">
+				{% csrf_token %}
+				<!-- <label for="newDir_textarea"> New directory:</label><br> -->
+				<input type="text" id="newDir_textarea" name="new_folder" value=""><br>
+				<!--<input type="submit" value="Create"> -->
+				</form> 
+				<div class="newDirModal-close" >Cancel</div>
+				<div class="newDirModal-accept">Create</div>
+			</div>
+		</div> 
+
+
+		<div id="moveModal" class="moveModal"> 
+			<div id="moveModal-container">
+				<div class="moveModal-header">
+					<div id="moveModal-back">
+						<img src="{% static 'filestorage/images/back.svg' %}" alt="back" height="30" width="30">
+					</div>
+					<div id="moveModal-current"></div> 
+				</div>
+				<div id="moveModal-content"></div>
+				<div id="moveModal-cancel" >Cancel</div>
+				<div id="moveModal-accept">Move here</div>
+			</div>
+		</div> 
+		
+		<!-- The Modal to share options -->
+		<div id="share_modal" class="shareModal">
+			<!-- Modal content -->
+			<div id="shareModal-container">
+				<div id="shareModal-content">
+					<form name="share_form" id="shareModal-form">
+						{% csrf_token %}
+						<select name = "dropdown" id="shareModal-select">
+							<option value = "start" selected>Get share link</option>
+							<option value = "stop">Unshare</option>
+						</select>
+						
+					</form>
+					<div class="shareModal-button-box">
+							<div id="shareModal-cancel" >Cancel</div>
+							<div id="shareModal-accept">Ok</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div> 
+
+
+		{% endif %}
+			
+
+
+
+		<div id="info_popup" class="fixed">
+			<input type="file"  id="file_input" class="inputfile" data-multiple-caption="{count} items" multiple/>
+			<div id="counter"></div>
+			<div id="abort" ><img src="{% static 'filestorage/images/abort_red.svg' %}" alt="abort" height="35" width="35"></div>
+			<div id="accept"><img src="{% static 'filestorage/images/accept.svg' %}" alt="confirm" height="35" width="35"></div>
+		</div>
+		
+	   
+   {% endblock %}
+
+
+    {% block js %}
+			<script src="{% static 'filestorage/scripts/main.js' %}"></script>
+			<script src="{% static 'filestorage/scripts/modal.js' %}"></script>
+			<script src="{% static 'filestorage/scripts/download.js' %}"></script>
+			<script src="{% static 'filestorage/scripts/select.js' %}"></script>
+		{% if user.is_authenticated %}	
+			<script src="{% static 'filestorage/scripts/upload.js' %}"></script>
+			<script src="{% static 'filestorage/scripts/share.js' %}"></script>
+			<script src="{% static 'filestorage/scripts/remove.js' %}"></script>
+			<script src="{% static 'filestorage/scripts/move.js' %}"></script>
+			<script src="{% static 'filestorage/scripts/menu.js' %}"></script>
+		{% else %}
+			<script src="{% static 'filestorage/scripts/non_auth_mode.js' %}"></script>
+		{% endif %}
+
+			
+	
+
+    {% endblock %}
+
+	

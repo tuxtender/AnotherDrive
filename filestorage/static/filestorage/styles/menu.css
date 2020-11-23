@@ -1,0 +1,152 @@
+
+/*	Top menu bar	*/
+
+#menu {
+	/*display: none;*/
+	position: sticky;
+	top: 0;
+	z-index: 1;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: pink;
+}
+
+li {
+  float: right;
+}
+
+.menu, #nav_bar {
+	display: none;
+	color: white;
+	text-align: center;
+	padding: 0px 16px;
+	text-decoration: none;
+	height: 50px;
+	line-height: 50px;
+
+}
+
+.menu0, .dropbtn {
+	display: inline-block;
+}
+
+#nav_bar {
+	display: inline-block;
+	float: left;
+	padding: 0px 50px;
+	cursor: pointer;
+	font-size: 20px;
+	
+}
+
+.navbar_dir {
+	text-decoration: none;
+	font-size: 20px;
+	color: white;
+}
+
+.menu:hover {
+  background-color: red;
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+
+
+/*	Pop-up selecting menu	*/
+
+div.fixed {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 70px;
+}
+
+.inputfile {
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+#info_popup {
+	display: none;
+	background-color: #3367d6;
+}
+
+#accept {
+	display: none;
+}
+
+#counter, #accept, #abort {
+	text-align: center;
+	padding: 0px 30px;
+	height: 70px;
+	line-height: 70px;
+}
+
+#counter, #abort {
+	display: inline-block;
+}
+
+#counter {
+	color: white;
+}
+
+#accept, #abort {
+	float: right;
+}
+
+#abort img, #accept img {
+	height: 70px;
+	line-height: 70px;
+	text-align: center;
+}
+
+.longFileName {
+	max-width: 600px;
+	overflow: hidden;
+}
+
+
+/*	Phone	 */	
+
+@media only screen and (max-width: 640px) {
+
+	#counter, #accept, #abort {
+		padding: 0px 10px;
+	}
+		
+	.longFileName {
+		max-width: 300px;
+		overflow: hidden;
+		font-size: 12px;
+	}
+	
+}
+
+/*	iPhone	5 */
+
+@media only screen and (max-width: 320px) {
+
+	#counter, #accept, #abort {
+		padding: 0px 10px;
+	}
+		
+	.longFileName {
+		max-width: 200px;
+		overflow: hidden;
+		font-size: 8px;
+	}
+	
+}
+
+

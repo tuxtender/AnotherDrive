@@ -1,0 +1,53 @@
+{% extends "base_generic.html" %}
+
+{% load static %}
+
+{% block title %}<title>Login</title>{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'filestorage/styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'filestorage/styles/authentification.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div>
+<form class="" method="post" action="{% url 'login' %}">
+{% csrf_token %}
+
+    <div class="grid-container">
+            <div class="item1">
+                {{ form.username.label_tag }}
+            </div>
+            <div class="item2">
+                {{ form.username }}<br/>
+            </div>
+            <div class="item3">
+                {{ form.password.label_tag }}
+            </div>
+            <div class="item4">
+                {{ form.password }}<br/>
+            </div>
+            <div class="item5">
+                <input type="submit" value="login" />
+                {# <input type="hidden" name="next" value="{{ next }}" /> #}
+            </div>    
+        </div>
+
+</form>
+</div>
+
+{% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+{# Assumes you setup the password_reset view in your URLconf #}
+{# <p><a href="">Lost password?</a></p> #}
+
+
+
+{% endblock %}
+
+
+
+
+{% block footer %} {% endblock %}

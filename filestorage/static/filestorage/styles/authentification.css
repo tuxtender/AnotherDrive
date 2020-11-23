@@ -1,0 +1,60 @@
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+}
+
+.item1 { grid-area: login_label; }
+.item2 { grid-area: login_input; }
+.item3 { grid-area: psw_label; }
+.item4 { grid-area: psw_input; }
+.item5 { grid-area: button; }
+
+.grid-container {
+	display: inline-grid;
+	grid-template-areas:
+	'login_label login_input'
+	'psw_label psw_input'
+	'button button';
+	justify-content: center;
+
+	grid-gap: 5px 10px;
+	background-color: pink;
+	padding: 10px;
+
+	border-radius: 5px ;
+}
+
+.grid-container > div {
+	text-align: center;
+	padding: 0 0;
+	font-family: "Courier New",serif;
+}
+
+div.item1, div.item3 {
+	
+	text-align: left;
+	font-size: 18px;
+}
+
+
+input[type=button] {
+	font-family: "Courier New",serif;
+	border-radius: 5px ;
+	background-color: pink;
+	transition: background-color 2s;
+	font-size: 18px;
+	border: 1px solid white;
+	color:  white;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+input[type=button]:hover {
+	background-color: #E7AAB5;
+
+}
