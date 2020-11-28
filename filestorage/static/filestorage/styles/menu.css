@@ -2,33 +2,36 @@
 /*	Top menu bar	*/
 
 #menu {
-	/*display: none;*/
+	display: inline-block;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	background-color: pink;
+	width: 100%;
 	position: sticky;
 	top: 0;
 	z-index: 1;
-}
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: pink;
 }
 
 li {
   float: right;
 }
 
-.menu, #nav_bar {
+.menu {
 	display: none;
 	color: white;
 	text-align: center;
 	padding: 0px 16px;
-	text-decoration: none;
 	height: 50px;
 	line-height: 50px;
+	
+}
 
+.menu_icon {
+	height: 15px;
+	width: 15px;
+	
 }
 
 .menu0, .dropbtn {
@@ -36,18 +39,24 @@ li {
 }
 
 #nav_bar {
-	display: inline-block;
+	
+	line-height: 50px;
 	float: left;
 	padding: 0px 50px;
-	cursor: pointer;
 	font-size: 20px;
 	
 }
 
 .navbar_dir {
+	display: inline-block;
 	text-decoration: none;
 	font-size: 20px;
-	color: white;
+	color: black;
+	height: 100%;
+}
+
+.navbar_dir:hover {
+	background-color: red;
 }
 
 .menu:hover {
@@ -96,6 +105,9 @@ div.fixed {
 #counter, #abort {
 	display: inline-block;
 }
+#accept:hover, #abort:hover {
+	background-color: white;
+}
 
 #counter {
 	color: white;
@@ -116,6 +128,36 @@ div.fixed {
 	overflow: hidden;
 }
 
+/* Tooltip container */
+.tooltip {
+	position: relative;
+	
+}
+  
+  /* Tooltip text */
+.tooltiptext {
+	visibility: hidden;
+	width: 120px;
+	background-color: white;
+	color: black;
+	text-align: center;
+	padding: 5px 0;
+   
+	/* Position the tooltip text - see examples below! */
+	position: absolute;
+	z-index: 1;
+	top: 100%;
+	right: 0;
+	line-height: 100%;
+	border-style: none solid solid solid;
+	border-width: 1px;
+	border-color: pink;
+ }
+
+ /* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
 
 /*	Phone	 */	
 

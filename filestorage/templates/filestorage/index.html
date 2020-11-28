@@ -23,17 +23,17 @@
 
 		<ul id="menu">
 
-			<li id="back"  class="menu menu1 menu2"><div ><img src="{% static 'filestorage/images/abort.svg' %}" alt="back" height="15" width="15"></div></li>
-			<li id="more" class="menu menu0"><div ><img src="{% static 'filestorage/images/menu.svg' %}" alt="menu" height="15" width="15"></div></li>
-			<li id="download" class="menu menu2"><div ><img src="{% static 'filestorage/images/download.svg' %}" alt="download" height="15" width="15"></div></li>
+			<li id="back"  class="menu menu1 menu2 tooltip"><div ><img class="menu_icon" src="{% static 'filestorage/images/abort.svg' %}" alt="back"> </div><span class="tooltiptext">Exit</span></li>
+			<li id="more" class="menu menu0 tooltip"><div ><img class="menu_icon" src="{% static 'filestorage/images/menu.svg' %}" alt="menu"></div><span class="tooltiptext">More</span></li>
+			<li id="download" class="menu menu2 tooltip"><div  ><img class="menu_icon" src="{% static 'filestorage/images/download.svg' %}" alt="download"></div><span class="tooltiptext">Download</span></li>
 
 		{% if user.is_authenticated %}	
-			<li id="add" class="menu menu0"><div ><img src="{% static 'filestorage/images/plus.svg' %}" alt="add" height="15" width="15"></div></li>
-			<li id="upload"  class="menu menu1"><div ><img src="{% static 'filestorage/images/upload.svg' %}" alt="upload" height="15" width="15"></div></li>
-			<li id="new-directory"  class="menu menu1"><div ><img src="{% static 'filestorage/images/add_folder.svg' %}" alt="add_folder" height="15" width="15"></div></li>
-			<li id="delete"  class="menu menu2"><div ><img src="{% static 'filestorage/images/remove.svg' %}" alt="delete" height="15" width="15"></div></li>
-			<li id="move" class="menu menu2" ><div><img src="{% static 'filestorage/images/move.svg' %}" alt="move_to" height="15" width="15"></div></li>
-			<li id="share"  class="menu menu2"><div  ><img src="{% static 'filestorage/images/share.svg' %}" alt="share" height="15" width="15"></div></li>
+			<li id="add" class="menu menu0 tooltip"><div ><img class="menu_icon" src="{% static 'filestorage/images/plus.svg' %}" alt="add"></div> <span class="tooltiptext">Add content</span></li>
+			<li id="upload"  class="menu menu1 tooltip"><div><img class="menu_icon" src="{% static 'filestorage/images/upload.svg' %}" alt="upload"></div><span class="tooltiptext">Upload</span></li>
+			<li id="new-directory"  class="menu menu1 tooltip"><div ><img class="menu_icon" src="{% static 'filestorage/images/add_folder.svg' %}" alt="add_folder"></div><span class="tooltiptext">New folder</span></li>
+			<li id="delete"  class="menu menu2 tooltip"><div><img class="menu_icon" src="{% static 'filestorage/images/remove.svg' %}" alt="delete"></div><span class="tooltiptext">Delete</span></li>
+			<li id="move" class="menu menu2 tooltip" ><div ><img class="menu_icon" src="{% static 'filestorage/images/move.svg' %}" alt="move_to"></div><span class="tooltiptext">Move</span></li>
+			<li id="share"  class="menu menu2 tooltip"><div><img class="menu_icon" src="{% static 'filestorage/images/share.svg' %}" alt="share"></div><span class="tooltiptext">Share</span></li>
 		{% endif %}
 			
 			
@@ -45,8 +45,8 @@
 						{% else %}
 							{{item.name}}
 						{% endif %}
-							<span>&#47;</span>
 					</a>
+					<span>&#47;</span>
 				{% endfor %}
 			
 			</li> 

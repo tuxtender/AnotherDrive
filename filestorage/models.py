@@ -293,7 +293,7 @@ class Folder(models.Model):
 
     @staticmethod
     def __traverse(folder, share=None):
-        #folder.recalculatePath()
+        
         if not folder.getFiles() and not folder.getFolders():
             return
 
@@ -526,12 +526,12 @@ class Share(models.Model):
         root = Folder.root(user)
         container = root.addNewFolder(new_name_added_folder)
 
-        self.__folderTraverse(self.origin, user, container)
+        self.__folderTraverse(self.origin, container)
 
         return container
     
     
-    def __folderTraverse(self, folder, user, prev_folder):
+    def __folderTraverse(self, folder, prev_folder):
         
         if not folder.getFiles() and not folder.getFolders():
             return
@@ -540,7 +540,7 @@ class Share(models.Model):
             new_file = File.objects.create(original=f.original,
                                                name=f.name,
                                                path=prev_folder.full_name,
-                                               contributor=user)
+                                               contributor=prev_folder.owner)
             prev_folder.addFile(new_file)
 
             f.shared.add(new_file)
@@ -550,11 +550,11 @@ class Share(models.Model):
             if not new_name:
                 new_name = self.contributor.username
     
-            new = Folder.objects.create(owner=user,
+            new = Folder.objects.create(owner=prev_folder.owner,
                                         name=new_name,
                                         parent=prev_folder)
             new.recalculatePath()
-            self.__folderTraverse(child, user, new)
+            self.__folderTraverse(child, new)
     
 
     def __str__(self):
