@@ -70,6 +70,7 @@ def commonView(request, folder_id):
             try:
                 folder = request.user.owner_folder_set.get(pk=folder_id)
                 path_seq = folder.getChain()
+                title = 'AnotherDrive:'+ request.user.username + folder.full_name
             except Folder.DoesNotExist:
                 return HttpResponseForbidden()
           
@@ -90,7 +91,7 @@ def commonView(request, folder_id):
 
                 folder = Folder.objects.get(pk=folder_id)
                 path_seq = folder.getChain(sh)
-                
+                title = 'AnotherDrive:'+ '/'.join(str(f.name) for f in path_seq)
 
                 request.session['current_folder'] = folder_id
             else:
@@ -98,7 +99,7 @@ def commonView(request, folder_id):
 
 
     context = {
-                'misc': {'owner': folder.owner.username},
+                'misc': {'owner': folder.owner.username, 'title': title},
                 'path': path_seq,
     }
     return render(request, 'filestorage/index.html', context)
